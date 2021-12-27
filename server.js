@@ -14,13 +14,6 @@ const client = new Client({
     database: "nom-bdd-ici"
 });
 
-
-
-
-
-
-
-
 client.connect();
 const users = [];
 var dico = {};
