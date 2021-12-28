@@ -7,11 +7,11 @@ const {Client} = require('pg');
 
 // establish the connexion with the pg db
 const client = new Client({
-    host: "localhost",
+    host: "localhost",  //Mettre l'adresse ip du conteneur où le service postgres tourne
     user: "root",
     port:   5432,
     password: "postgres",
-    database: "root"
+    database: "postgres"
 });
 
 client.connect();
