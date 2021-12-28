@@ -1,0 +1,4 @@
+CREATE USER root;
+
+CREATE DATABASE postgres;
+GRANT ALL PRIVILEGES ON DATABASE postgres TO root;

@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  db:
+    image: postgres
+    environment: 
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: root
+      POSTGRES_DB: root
+    volumes:
+      - './pgdata:/data/'
+      # - ./init.sql:/docker-entrypoint-initdb.d
+    ports:
+    - '5432:5433'
+    networks:
+      - planetwork
+  web:
+    tty: true
+    build:
+      context: .
+      dockerfile: /home/ghosto/Documents/projet_prog_dist/prog-dist/Dockerfile
+    command: bash
+    depends_on:
+      - db
+    ports:
+      - '3000:3000'
+    networks:
+      - planetwork
+
+networks:
+  planetwork:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.63.0.0/16

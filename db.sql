@@ -7,6 +7,6 @@ CREATE TABLE planets (
 
 
 COPY planets(planet_name, area, dist_from_earth)
-FROM '/home/zinedine/Bureau/STUDY/M1/ProgDist/prog-dist/data'
+FROM '/home/ghosto/Documents/projet_prog_dist/prog-dist/data'
 DELIMITER ','
 CSV HEADER;

@@ -8,10 +8,10 @@ const {Client} = require('pg');
 // establish the connexion with the pg db
 const client = new Client({
     host: "localhost",
-    user: "nom-user-ici",
+    user: "root",
     port:   5432,
-    password: "mot-de-passe-ici",
-    database: "nom-bdd-ici"
+    password: "postgres",
+    database: "root"
 });
 
 client.connect();
