@@ -8,6 +8,7 @@ services:
       POSTGRES_DB: root
     volumes:
       - './pgdata:/data/'
+      # - Copier db.sql dans le conteneur
       # - ./init.sql:/docker-entrypoint-initdb.d
     ports:
     - '5432:5433'
