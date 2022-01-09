@@ -42,40 +42,34 @@
           </ul>
         </div>
       </nav>        
-        <div class="container">
-            <table class="table table-hover" style="background-color: rgba(245, 245, 245, 0.726); box-shadow: 1px 1px 10px whitesmoke; margin-top: 3%;">
-                <thead>
-                  <tr>
-                    <th scope="col">Informations planète</th>
-                    <th scope="col">Illustration</th>
-                    <th scope="col">Détails</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% for(var i = 0; i < dico.length; i++) { %>
-                  <tr style="">
-                    <td style="">
-                        <ul style="list-style-type: none;">
-                            <li><b>Nom :</b> <%= dico[i].name %></li>
-                            <li><b>Masse :</b> <%= dico[i].mass %> × 10^24 kg</li>
-                            <li><b>Gravité :</b> <%= dico[i].gravity %> g</li>
-                            <li><b>Longueur de la journée :</b> <%= dico[i].length_of_day %> heures</li>
-                            <li><b>Distance du soleil :</b> <%= dico[i].distance_from_sun %></li>
-                        </ul>
-                    </td>
-                    <td>
-                      <img src="<%= dico[i].name %>.jpg" width=230" height="200" class = "img img-responsive" alt="">
-                    </td>
-                    <td>
-                      <form action="/results" method="post">
-                        <input type="hidden" id="planet_name" name="planet_name" value="<%= dico[i].name %>">
-                        <button type="submit" class="btn btn-info">Plus d'infos</button>
-                      </form>
-                    </td>
-                  </tr>
-                  <% } %>
-                </tbody>
-              </table>
+        <div class="container row">
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="POST">
+                    <input type="hidden" name="filtre" value="gazeuse">
+                    <button type="submit" class="btn btn-info btn-lg">Gaseuses</button>
+                </form>
+            </div>
+
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="POST">
+                    <input type="hidden" name="filtre" value="tellurique">
+                    <button type="submit" class="btn btn-info btn-lg">Telluriques</button>
+                </form>
+            </div>
+
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="POST">
+                    <input type="hidden" name="filtre" value="naine">
+                    <button type="submit" class="btn btn-info btn-lg">Naines</button>
+                </form>
+            </div>
+
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="POST">
+                    <input type="hidden" name="filtre" value="Géante de glaces">
+                    <button type="submit" class="btn btn-info btn-lg">Géantes de glace</button>
+                </form>
+            </div>
         </div>
 
     <!--

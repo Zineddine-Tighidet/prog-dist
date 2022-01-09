@@ -11,9 +11,6 @@
     <title>Résultats</title>
 </head>
 <body style="background-image: url('photo-1445905595283-21f8ae8a33d2.jpeg');">
-        <%
-            console.log(dico.length)
-        %>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">
@@ -29,33 +26,68 @@
                 <li class="nav-item active" style="margin-left: 30%;">
                   <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item" style="margin-left: 30%;">
-                    <a class="nav-link" href="add">Ajouter <span class="sr-only"></span></a>
+
+                <li class="nav-item active" style="margin-left: 30%;">
+                    <a class="nav-link" href="/filter">Catégories <span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item" style="margin-left: 30%;">
-                    <a class="nav-link" href="modify">Modifier <span class="sr-only"></span></a>
-                </li>
+          <!--
+            <li class="nav-item" style="margin-left: 30%;">
+                <a class="nav-link" href="add">Ajouter <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item" style="margin-left: 30%;">
+                <a class="nav-link" href="modify">Modifier <span class="sr-only"></span></a>
+            </li>
+            -->
               </ul>
             </div>
           </nav>
-
-        <h3 class="container" style="color: white;">Identifiant du support : <span style="color: red;"><%= sup_id %></span> (total <%= dico.length %>)</h3>
         
-        <div class="container" style = "color : white;">
-            <% for(var i = 0; i < dico.length; i++) { %>
+        <div class="container row" style = "color : white;">
+            <table>
+                <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+            <% 
+                if(dico.length != 0){
+                    for(var i = 0; i < dico.length; i++) { %>
+                        <tr>
+                            <td>
+                                <div class = "col-xs-5">
+                                    <img src="<%= name %>.jpg" width=500" height="500" class = "img img-responsive" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class = "col-xs-5">
+                                    <ul style="color: white; list-style-type: none; font-size: 140%;">
+                                        <li>
+                                            <h1 style = "text-decoration: underline;">Déscription :</h1>
+                                            <p>
+                                                <%= dico[i].descr %>
+                                            </p>
+                                        </li>
 
-
-                <div class = "col-xs-5">
-                    <ul>
-                        <li>Planet name : <%= dico[i].planet_name %></li>
-                        <li>Planet area : <%= dico[i].area %> km²</li>
-                        <li>Planet distance from earth : <%= dico[i].dist_from_earth %></li>
-                    </ul>
-                </div>
-                <div class = "col-xs-offset-2 col-xs-5">
-                    <img src="Jupiter.jpg" width=200" height="200" class = "img img-responsive" alt="">
-                </div>
+                                        <hr>
+                                        <ul>
+                                            <li>Nom : <%= name %></li>
+                                            <li>Nombre de satellites : <%= dico[i].number_of_moons %></li>
+                                            <li>Diamètre : <%= dico[i].diameter %> km</li>
+                                            <li>Densité : <%= dico[i].density %> km/m³</li>
+                                            <li>Période de rotation : <%= dico[i].rotation_period %> heures</li>
+                                            <li>Période orbitale : <%= dico[i].orbital_period %> jours</li>
+                                        </ul>
+                                    </ul>
+                                
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
             <% } %>
+                </tbody>
+            </table>
         </div>
 </body>
 </html>

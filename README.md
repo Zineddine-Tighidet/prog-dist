@@ -6,3 +6,13 @@ dependencies :
 dev-dependencies :
 - nodemon (make changes on the flow)
 - dotenv (permet d'avoir des variables d'environement qu'on va stocker dans un fichier env pour les charger dans le serveur)
+
+
+## Run the Application:
+
+**Important:** make sure to change the paths to the psql data specified in the `db.sql` script (lines 61, 66 and 71)
+
+
+- Open a terminal on `psql` and run the script `db.sql`.
+- Open another terminal and run `npm run devStart`
+- You can now use the app at `localhost:3000`
