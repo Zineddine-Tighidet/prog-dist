@@ -1,7 +1,9 @@
-// start by creat a simple express app
-const express = require("express")
-const app = express()
-const {Client} = require('pg')
+/* jshint esversion: 10 */
+
+// start by creating a simple express app
+const express = require("express");
+const app = express();
+const {Client} = require('pg');
 
 // establish the connexion with the pg db
 const client = new Client({
@@ -12,13 +14,13 @@ const client = new Client({
     database: "astro"
 })
 
-client.connect()
-const users = []
-var dico = {}
+client.connect();
+const users = [];
+var dico = {};
 
 // in order to say to our server that we are using ejs syntax
-app.set('view-engine', 'ejs')
-app.use(express.urlencoded({extended: false}))
+app.set('view-engine', 'ejs');
+app.use(express.urlencoded({extended: false}));
 
 // some psql queries
 
@@ -60,20 +62,20 @@ app.post('/results', (req, ress) => {
                 dico = res.rows
                 ress.render("results.ejs", {dico, name : req.body.planet_name})
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
-        })
+        });
     }catch{
-        ress.redirect("#")
+        ress.redirect("#");
     }
-})
+});
 
 /* set app a roots */
 
 // redirect to index if he try to enter results by himself 
 app.get('/results', (req, res) => {
-    res.render('index.ejs')
-})
+    res.render('index.ejs');
+});
 
 app.get('/filter', (req, res) => {
     res.render('filter.ejs')
@@ -81,7 +83,7 @@ app.get('/filter', (req, res) => {
 
 
 // for static elements (like images ...)
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // the app is listening from the 3000 port
-app.listen(3000)
+app.listen(3000);
