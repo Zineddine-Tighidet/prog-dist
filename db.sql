@@ -6,7 +6,7 @@ CREATE TABLE planets (
 );
 
 
-COPY planets(planet_name, area, dist_from_earth)
-FROM '/home/ghosto/Documents/projet_prog_dist/prog-dist/data'
+\COPY planets(planet_name, area, dist_from_earth)
+FROM 'data/data'
 DELIMITER ','
 CSV HEADER;
