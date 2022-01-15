@@ -19,6 +19,6 @@ dev-dependencies :
 
 ## To run the application on a Kubernetes cluster:
 ### **Important:** make sure to have minikube installed on your machine and enough space on your disk to pull the images
-- **First** : launch a k8s cluster wite : minikube start ( that could take some time so you can make to yourself a coffee)  
-- **Second** : launch Deployments and Services with : source launch.sh ( that could aussi take some time because then pods need to start )
+- **First** : launch a k8s cluster wite : `minikube start` ( that could take some time so you can make to yourself a coffee)  
+- **Second** : launch Deployments and Services with : `source launch.sh` ( that could aussi take some time because then pods need to start )
 - **Third** : A new page should open in your favorite browser, enjoy the planets !
