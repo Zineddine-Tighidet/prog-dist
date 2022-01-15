@@ -1,0 +1,7 @@
+pgdata
+node_modules
+db.sql
+README.md
+k8s
+Dockerfile
+launch_script.sh

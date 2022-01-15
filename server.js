@@ -7,10 +7,10 @@ const {Client} = require('pg');
 
 // establish the connexion with the pg db
 const client = new Client({
-    host: "localhost",
-    user: "root",
+    host: process.env.POSTGRES_SVC_SERVICE_HOST,
+    user:  process.env.USER_NAME,
     port:   5432,
-    password: "root",
+    password: process.env.PASSWORD,
     database: "astro"
 })
 
@@ -57,7 +57,7 @@ app.post('/index_filter', (req, ress) => {
 app.post('/results', (req, ress) => {
     try{
         client.query("SELECT * FROM planet NATURAL JOIN descriptions WHERE planet.name = '" + req.body.planet_name + "';", async (err, res) => {
-            console.log(res.rows)
+            // console.log(res.rows)
             if(!err){
                 dico = res.rows
                 ress.render("results.ejs", {dico, name : req.body.planet_name})
