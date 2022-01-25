@@ -28,8 +28,17 @@
             <li class="nav-item active" style="margin-left: 30%;">
               <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active" style="margin-left: 30%;">
+            <li class="nav-item" style="margin-left: 30%;">
               <a class="nav-link" href="/filter">Catégories <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item" style="margin-left: 30%;">
+              <a class="nav-link" href="/add">Ajouter <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item" style="margin-left: 30%;">
+              <a class="nav-link" href="/update">Modifier <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item" style="margin-left: 30%;">
+              <a class="nav-link" href="/delete">Supprimer <span class="sr-only"></span></a>
             </li>
           <!--
             <li class="nav-item" style="margin-left: 30%;">
@@ -60,14 +69,14 @@
                             <li><b>Masse :</b> <%= dico[i].mass %> × 10^24 kg</li>
                             <li><b>Gravité :</b> <%= dico[i].gravity %> g</li>
                             <li><b>Longueur de la journée :</b> <%= dico[i].length_of_day %> heures</li>
-                            <li><b>Distance du soleil :</b> <%= dico[i].distance_from_sun %></li>
+                            <li><b>Distance du soleil :</b> <%= dico[i].distance_from_sun %> x 10^6 km</li>
                         </ul>
                     </td>
                     <td>
-                      <img src="<%= dico[i].name %>.jpg" width=230" height="200" class = "img img-responsive" alt="">
+                      <img src="<%= dico[i].path %>.jpg" width=230" height="200" class = "img img-responsive" alt="">
                     </td>
                     <td>
-                      <form action="/results" method="post">
+                      <form action="/results" method="GET">
                         <input type="hidden" id="planet_name" name="planet_name" value="<%= dico[i].name %>">
                         <button type="submit" class="btn btn-info">Plus d'infos</button>
                       </form>

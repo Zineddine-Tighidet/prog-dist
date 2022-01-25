@@ -14,6 +14,5 @@ RUN npm install
 
 COPY . /usr/src/app
 
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
 EXPOSE 3000
 CMD ["node", "server.js"]

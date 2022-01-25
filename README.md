@@ -2,6 +2,7 @@
 dependencies :
 - express
 - ejs
+- minikube
 
 dev-dependencies :
 - nodemon (make changes on the flow)
