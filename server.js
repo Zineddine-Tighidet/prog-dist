@@ -6,23 +6,23 @@ const app = express();
 const {Client} = require('pg');
 
 // establish the connexion with the pg db
-const client = new Client({
-    host: process.env.POSTGRES_SVC_SERVICE_HOST,
-    user:  process.env.USER_NAME,
-    port:   5432,
-    password: process.env.PASSWORD,
-    database: "astro"
-})
+// const client = new Client({
+//     host: process.env.POSTGRES_SVC_SERVICE_HOST,
+//     user:  process.env.USER_NAME,
+//     port:   5432,
+//     password: process.env.PASSWORD,
+//     database: "astro"
+// })
 
 
 // for test
-// const client = new Client({
-//     host: "localhost",
-//     user:  "root",
-//     port:   5432,
-//     password: "root",
-//     database: "astro"
-// })
+const client = new Client({
+    host: "localhost",
+    user:  "root",
+    port:   5432,
+    password: "root",
+    database: "astro"
+})
 
 
 client.connect();
@@ -65,20 +65,21 @@ app.post("/add", (req, ress) =>{
 
 app.post("/delete", (req, ress) =>{
     try{
-        client.query(`DELETE FROM planet WHERE name = '${req.body.planet_name}'`, async (err, res) => {
+        client.query(`DELETE FROM planet WHERE name = '${req.body.planet_name}'`, (err, res) => {
             if(!err){
                 try{
-                    client.query("SELECT * FROM planet;", async (errr, resss) => {
-                        if(!err){
+                    client.query("SELECT * FROM planet;", (errr, resss) => {
+                        if(!errr){
                             dico = resss.rows
+                            ress.render("delete.ejs", {dico})
                         }else{
                             console.log(err.message)
                         }
                     })
                 }catch{
-                    ress.redirect("#")
+                    res.redirect("#")
                 }
-                ress.render("filter.ejs", {dico})
+                
             }else{
                 console.log(err.message)
             }
@@ -88,21 +89,6 @@ app.post("/delete", (req, ress) =>{
     }
 })
 
-
-app.get('/', (req, ress) => {
-    try{
-        client.query("SELECT * FROM planet;", async (err, res) => {
-            if(!err){
-                dico = res.rows
-                ress.render("index.ejs", {dico})
-            }else{
-                console.log(err.message)
-            }
-        })
-    }catch{
-        ress.redirect("#")
-    }
-})
 
 
 app.get('/delete', (req, ress) => {
@@ -152,37 +138,6 @@ app.post('/form_update', (req, ress) => {
     }
 })
 
-app.get('/index_filter', (req, ress) => {
-    try{
-        client.query("SELECT * FROM planet WHERE type = '" + req.query.filtre + "';", async (err, res) => {
-            if(!err){
-                dico = res.rows
-                ress.render("index.ejs", {dico})
-            }else{
-                console.log(err.message)
-            }
-        })
-    }catch{
-        ress.redirect("#")
-    }
-})
-
-app.get('/results', (req, ress) => {
-    try{
-        client.query("SELECT * FROM planet NATURAL JOIN descriptions WHERE planet.name = '" + req.query.planet_name + "';", async (err, res) => {
-            console.log(req.query.planet_name)
-            if(!err){
-                dico = res.rows
-                ress.render("results.ejs", {dico, name : req.query.planet_name})
-            }else{
-                console.log(err.message);
-            }
-        });
-    }catch{
-        ress.redirect("#");
-    }
-});
-
 
 app.get('/form_update', (req, ress) => {
     try{
@@ -202,14 +157,6 @@ app.get('/form_update', (req, ress) => {
 
 /* set app a roots */
 
-// redirect to index if he try to enter results by himself 
-app.get('/results', (req, res) => {
-    res.render('index.ejs');
-});
-
-app.get('/filter', (req, res) => {
-    res.render('filter.ejs')
-})
 
 app.get('/add', (req, res) => {
     res.render('add.ejs')

@@ -8,14 +8,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <title>Ajouter</title>
+    <title>Accueil</title>
 </head>
 
   
 <body style="background-image: url('photo-1445905595283-21f8ae8a33d2.jpeg');">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="http://localhost:4000/">
+    <a class="navbar-brand" href="/">
         <img src="logo.png" width="100" height="60" class="d-inline-block align-top" alt="">
         <span style="color: rgb(114, 12, 155);"></span>
         <span style="color: rgb(114, 12, 155);">E-Planets</span>
@@ -26,19 +26,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item" style="margin-left: 30%;">
-          <a class="nav-link" href="http://localhost:4000/">Accueil <span class="sr-only"></span></a>
+          <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active" style="margin-left: 30%;">
+          <a class="nav-link" href="/filter">Catégories <span class="sr-only"></span></a>
         </li>
         <li class="nav-item" style="margin-left: 30%;">
-          <a class="nav-link" href="http://localhost:4000/filter">Catégories <span class="sr-only"></span></a>
+          <a class="nav-link" href="http://localhost:3000/add">Ajouter <span class="sr-only"></span></a>
         </li>
         <li class="nav-item" style="margin-left: 30%;">
-          <a class="nav-link" href="/add">Ajouter <span class="sr-only"></span></a>
+          <a class="nav-link" href="http://localhost:3000/update">Modifier <span class="sr-only"></span></a>
         </li>
         <li class="nav-item" style="margin-left: 30%;">
-          <a class="nav-link" href="/update">Modifier <span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item" style="margin-left: 30%;">
-          <a class="nav-link" href="/delete">Supprimer <span class="sr-only"></span></a>
+          <a class="nav-link" href="http://localhost:3000/delete">Supprimer <span class="sr-only"></span></a>
         </li>
       <!--
         <li class="nav-item" style="margin-left: 30%;">
@@ -51,43 +51,38 @@
       </ul>
     </div>
   </nav>         
-        <div class="container">
-          <% 
-          if(dico.length != 0){
-              for(var i = 0; i < dico.length; i++) { %>
-            <form action="form_update" method="POST" style="color : white;">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nom de la planète</label>
-                  <input type="text" class="form-control" id="name" value="<%= dico[i].name %>" name="name" placeholder="Le nom ne peut etre modifié." readonly>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Masse</label>
-                    <input type="text" class="form-control" id="masse" value="<%= dico[i].mass %>" name = "masse">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Gravité</label>
-                    <input type="text" class="form-control" id="gravite" name="gravite" value="<%= dico[i].gravity %>">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Longueur de la journée</label>
-                    <input type="text" class="form-control" id="long" name="long" value="<%= dico[i].length_of_day %>">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Distance du soleil</label>
-                    <input type="text" class="form-control" id="dist" name="dist" value="<%= dico[i].distance_from_sun %>">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Déscription</label>
-                    <input class="form-control" id="desc" name="desc" value="<%= dico[i].descr %>">                     
-                </div>
-                <button type="submit" class="btn btn-lg btn-primary">Modifier</button>
-              </form>
-              <% } %>
-              <% } %>
+        <div class="container row">
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="GET">
+                    <input type="hidden" name="filtre" value="gazeuse">
+                    <button type="submit" class="btn btn-info btn-lg">Gaseuses</button>
+                </form>
+            </div>
+
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="GET">
+                    <input type="hidden" name="filtre" value="tellurique">
+                    <button type="submit" class="btn btn-info btn-lg">Telluriques</button>
+                </form>
+            </div>
+
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="GET">
+                    <input type="hidden" name="filtre" value="naine">
+                    <button type="submit" class="btn btn-info btn-lg">Naines</button>
+                </form>
+            </div>
+
+            <div class = "col-xs-3" style="margin: 5%">
+                <form action="/index_filter" method="GET">
+                    <input type="hidden" name="filtre" value="Géante de glaces">
+                    <button type="submit" class="btn btn-info btn-lg">Géantes de glace</button>
+                </form>
+            </div>
         </div>
 
     <!--
-    <form action="/results" class="container" method="POST" style="margin-top: 5%;">
+    <form action="/results" class="container" method="GET" style="margin-top: 5%;">
         <h1 style="color: whitesmoke">Chercher une plante par identifiant :</h1>
         <div class="form-group">
           <label for="sup_id" style="color: white;">Identifiant de la planete</label>
