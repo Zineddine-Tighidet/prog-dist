@@ -6,23 +6,23 @@ const app = express();
 const {Client} = require('pg');
 
 // establish the connexion with the pg db
-// const client = new Client({
-//     host: process.env.POSTGRES_SVC_SERVICE_HOST,
-//     user:  process.env.USER_NAME,
-//     port:   5432,
-//     password: process.env.PASSWORD,
-//     database: "astro"
-// })
+const client = new Client({
+    host: process.env.POSTGRES_SVC_SERVICE_HOST,
+    user:  process.env.USER_NAME,
+    port:   5432,
+    password: process.env.PASSWORD,
+    database: "astro"
+})
 
 
 // for test
-const client = new Client({
-    host: "localhost",
-    user:  "root",
-    port:   5432,
-    password: "root",
-    database: "astro"
-})
+// const client = new Client({
+//     host: "localhost",
+//     user:  "root",
+//     port:   5432,
+//     password: "root",
+//     database: "astro"
+// })
 
 
 client.connect();
@@ -32,7 +32,7 @@ var dico = {};
 // in order to say to our server that we are using ejs syntax
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
-app.use(express.json())
+app.use(express.json());
 
 // some psql queries
 
@@ -51,13 +51,13 @@ app.post("/add", (req, ress) =>{
                     ress.redirect("#");
                 }
 
-                ress.render("add.ejs")
+                ress.render("add.ejs");
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
         })
     }catch{
-        ress.redirect("#")
+        ress.redirect("#");
     }
 })
 

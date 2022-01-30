@@ -1,25 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deployment
+  name: web-deployment2
   labels:
-    app: web
+    app: web2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: web2
   template: # blueprint for pods
     metadata:
       labels:
-        app: web
+        app: web2
     spec:
       containers:
         - name: webapp
-          image: aallal18032000/express:v0.8.3
+          image: aallal18032000/express:ms2-v2
+          # command: [ "/bin/bash", "-c", "--" ]
+          # args: [ "while true; do sleep 30; done;" ]
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 4000
           env:
             - name: USER_NAME
               valueFrom:
@@ -42,13 +44,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-svc
+  name: web-svc2
 spec:
   type: LoadBalancer #To make it an external service, we put NodePort ( instead of clusterIp which is the type of an internal service )
   selector:
-    app: web
+    app: web2
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000 #Port of the pods
-      nodePort: 30300 #Open the port of a node
+      port: 4000
+      targetPort: 4000 #Port of the pods
+      nodePort: 30400 #Open the port of a node
