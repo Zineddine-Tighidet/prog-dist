@@ -159,7 +159,7 @@ app.get('/form_update', (req, ress) => {
 
 
 app.get('/add', (req, res) => {
-    res.render('add.ejs')
+    res.render('add.ejs', {ip : process.env.NODE_IP_ADDR})
 })
 
 app.get('/update', (req, ress) => {

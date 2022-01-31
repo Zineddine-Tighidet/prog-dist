@@ -36,7 +36,7 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres-url
-            - name: NODE_IP_ADDRESS
+            - name: NODE_IP_ADDR
               value: '`minikube ip`'
           
 ---
