@@ -1,8 +1,8 @@
 minikube start
 kubectl apply -f k8s/postgres-config.yaml
-sleep 300
 kubectl apply -f k8s/postgres-secret.yaml
 kubectl apply -f k8s/postgres.yaml
+sleep 30
 cd k8s
 source create_webapp1.sh
 source create_webapp2.sh
