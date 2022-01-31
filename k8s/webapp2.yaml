@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: aallal18032000/express:ms2-v3.0.1
+          image: aallal18032000/express:ms2-vfinal
           ports:
             - name: http
               containerPort: 4000
@@ -37,7 +37,8 @@ spec:
                   name: postgres-config
                   key: postgres-url
             - name: NODE_IP_ADDR
-              value: '192.168.49.2'
+              value: '🤷  Le nœud du plan de contrôle doit être en cours d'exécution pour cette commande
+👉  Pour démarrer un cluster, exécutez : "minikube start"'
           
       
 ---

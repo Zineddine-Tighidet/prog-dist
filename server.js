@@ -51,7 +51,7 @@ app.post("/add", (req, ress) =>{
                     ress.redirect("#");
                 }
 
-                ress.render("add.ejs");
+                ress.render("add.ejs", {ip : process.env.NODE_IP_ADDR});
             }else{
                 console.log(err.message);
             }
@@ -124,7 +124,7 @@ app.post('/form_update', (req, ress) => {
                 client.query("SELECT * FROM planet NATURAL JOIN descriptions WHERE name='" + req.body.name + "';", async (errr, res) => {
                     if(!err){
                         dico = res.rows;
-                        ress.render("form_update.ejs", {dico});
+                        ress.render("form_update.ejs", {dico, ip : process.env.NODE_IP_ADDR});
                     }else{
                         console.log(errr.message);
                     }
@@ -145,7 +145,7 @@ app.get('/form_update', (req, ress) => {
             console.log(req.query.planet_name)
             if(!err){
                 dico = res.rows
-                ress.render("form_update.ejs", {dico, name : req.query.planet_name})
+                ress.render("form_update.ejs", {dico, name : req.query.planet_name, ip : process.env.NODE_IP_ADDR})
             }else{
                 console.log(err.message);
             }
@@ -167,7 +167,7 @@ app.get('/update', (req, ress) => {
         client.query("SELECT * FROM planet;", async (err, res) => {
             if(!err){
                 dico = res.rows
-                ress.render("update.ejs", {dico})
+                ress.render("update.ejs", {dico, ip : process.env.NODE_IP_ADDR})
             }else{
                 console.log(err.message)
             }

@@ -86,11 +86,11 @@ app.get('/results', (req, ress) => {
 
 // redirect to index if he try to enter results by himself 
 app.get('/results', (req, res) => {
-    res.render('index.ejs');
+    res.render('index.ejs', {ip : process.env.NODE_IP_ADDR});
 });
 
 app.get('/filter', (req, res) => {
-    res.render('filter.ejs')
+    res.render('filter.ejs', {ip : process.env.NODE_IP_ADDR})
 })
 
 // for static elements (like images ...)
