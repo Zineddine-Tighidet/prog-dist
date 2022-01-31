@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: aallal18032000/express:ms1-final
+          image: aallal18032000/express:ms1-final-version
           ports:
             - name: http
               containerPort: 3000
