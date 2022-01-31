@@ -166,10 +166,10 @@ app.get('/update', (req, ress) => {
     try{
         client.query("SELECT * FROM planet;", async (err, res) => {
             if(!err){
-                dico = res.rows
-                ress.render("update.ejs", {dico, ip : process.env.NODE_IP_ADDR})
+                dico = res.rows;
+                ress.render("update.ejs", {dico, ip : process.env.NODE_IP_ADDR});
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
         })
     }catch{

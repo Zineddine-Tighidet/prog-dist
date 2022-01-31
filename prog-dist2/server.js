@@ -15,16 +15,6 @@ const client = new Client({
 });
 
 
-// for test
-// const client = new Client({
-//     host: "localhost",
-//     user:  "root",
-//     port:   5432,
-//     password: "root",
-//     database: "astro"
-// })
-
-
 client.connect();
 const users = [];
 var dico = {};
@@ -54,7 +44,7 @@ app.get('/index_filter', (req, ress) => {
     try{
         client.query("SELECT * FROM planet WHERE type = '" + req.query.filtre + "';", async (err, res) => {
             if(!err){
-                dico = res.rows
+                dico = res.rows;
                 ress.render("index.ejs", {dico, ip : process.env.NODE_IP_ADDR})
             }else{
                 console.log(err.message)
