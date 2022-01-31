@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+echo "apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-deployment2
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: aallal18032000/express:ms2-v3.0.1
+          image: aallal18032000/express:ms2-vfinal
           ports:
             - name: http
               containerPort: 4000
@@ -37,7 +37,7 @@ spec:
                   name: postgres-config
                   key: postgres-url
             - name: NODE_IP_ADDR
-              value: '192.168.49.2'
+              value: '`minikube ip`'
           
       
 ---
@@ -54,4 +54,4 @@ spec:
       port: 4000
       targetPort: 4000 #Port of the pods
       nodePort: 30400 #Open the port of a node
-
+" > webapp2.yaml

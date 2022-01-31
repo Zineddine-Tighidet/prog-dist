@@ -1,25 +1,25 @@
-apiVersion: apps/v1
+echo "apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deployment2
+  name: web-deployment1
   labels:
-    app: web2
+    app: web1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web2
+      app: web1
   template: # blueprint for pods
     metadata:
       labels:
-        app: web2
+        app: web1
     spec:
       containers:
         - name: webapp
-          image: aallal18032000/express:ms2-v3.0.1
+          image: aallal18032000/express:ms1-vfinal
           ports:
             - name: http
-              containerPort: 4000
+              containerPort: 3000
           env:
             - name: USER_NAME
               valueFrom:
@@ -36,22 +36,22 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres-url
-            - name: NODE_IP_ADDR
-              value: '192.168.49.2'
+            - name: NODE_IP_ADDRESS
+              value: '`minikube ip`'
           
-      
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-svc2
+  name: web-svc1
 spec:
   type: LoadBalancer #To make it an external service, we put NodePort ( instead of clusterIp which is the type of an internal service )
   selector:
-    app: web2
+    app: web1
   ports:
     - protocol: TCP
-      port: 4000
-      targetPort: 4000 #Port of the pods
-      nodePort: 30400 #Open the port of a node
+      port: 3000
+      targetPort: 3000 #Port of the pods
+      nodePort: 30300 #Open the port of a node
 
+" > webapp1.yaml

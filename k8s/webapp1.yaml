@@ -17,8 +17,6 @@ spec:
       containers:
         - name: webapp
           image: aallal18032000/express:ms1-v2
-          # command: [ "/bin/bash", "-c", "--" ]
-          # args: [ "while true; do sleep 30; done;" ]
           ports:
             - name: http
               containerPort: 3000
@@ -38,6 +36,8 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres-url
+            - name: NODE_IP_ADDRESS
+              value: 192.168.49.2
           
 ---
 apiVersion: v1
@@ -53,3 +53,4 @@ spec:
       port: 3000
       targetPort: 3000 #Port of the pods
       nodePort: 30300 #Open the port of a node
+

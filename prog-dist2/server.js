@@ -12,7 +12,7 @@ const client = new Client({
     port:   5432,
     password: process.env.PASSWORD,
     database: "astro"
-})
+});
 
 
 // for test
@@ -39,14 +39,14 @@ app.get('/', (req, ress) => {
     try{
         client.query("SELECT * FROM planet;", async (err, res) => {
             if(!err){
-                dico = res.rows
-                ress.render("index.ejs", {dico})
+                dico = res.rows;
+                ress.render("index.ejs", {dico, ip : process.env.NODE_IP_ADDR});
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
         })
     }catch{
-        ress.redirect("#")
+        ress.redirect("#");
     }
 })
 
@@ -55,7 +55,7 @@ app.get('/index_filter', (req, ress) => {
         client.query("SELECT * FROM planet WHERE type = '" + req.query.filtre + "';", async (err, res) => {
             if(!err){
                 dico = res.rows
-                ress.render("index.ejs", {dico})
+                ress.render("index.ejs", {dico, ip : process.env.NODE_IP_ADDR})
             }else{
                 console.log(err.message)
             }
@@ -68,10 +68,10 @@ app.get('/index_filter', (req, ress) => {
 app.get('/results', (req, ress) => {
     try{
         client.query("SELECT * FROM planet NATURAL JOIN descriptions WHERE planet.name = '" + req.query.planet_name + "';", async (err, res) => {
-            console.log(req.query.planet_name)
+            console.log(req.query.planet_name);
             if(!err){
-                dico = res.rows
-                ress.render("results.ejs", {dico, name : req.query.planet_name})
+                dico = res.rows;
+                ress.render("results.ejs", {dico, name : req.query.planet_name, ip : process.env.NODE_IP_ADDR});
             }else{
                 console.log(err.message);
             }

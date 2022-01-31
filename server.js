@@ -59,7 +59,7 @@ app.post("/add", (req, ress) =>{
     }catch{
         ress.redirect("#");
     }
-})
+});
 
 
 
@@ -71,21 +71,21 @@ app.post("/delete", (req, ress) =>{
                     client.query("SELECT * FROM planet;", (errr, resss) => {
                         if(!errr){
                             dico = resss.rows
-                            ress.render("delete.ejs", {dico})
+                            ress.render("delete.ejs", {dico, ip : process.env.NODE_IP_ADDR})
                         }else{
-                            console.log(err.message)
+                            console.log(err.message);
                         }
-                    })
+                    });
                 }catch{
-                    res.redirect("#")
+                    res.redirect("#");
                 }
                 
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
         })
     }catch{
-        ress.redirect("#")
+        ress.redirect("#");
     }
 })
 
@@ -96,47 +96,47 @@ app.get('/delete', (req, ress) => {
         client.query("SELECT * FROM planet;", async (err, res) => {
             if(!err){
                 dico = res.rows
-                ress.render("delete.ejs", {dico})
+                ress.render("delete.ejs", {dico, ip : process.env.NODE_IP_ADDR})
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
-        })
+        });
     }catch{
-        ress.redirect("#")
+        ress.redirect("#");
     }
-})
+});
 
 
 app.post('/form_update', (req, ress) => {
     try{
         client.query("UPDATE planet set mass='" + req.body.masse + "', gravity ='" + req.body.gravite + "',   length_of_day ='" + req.body.long + "', distance_from_sun='" + req.body.dist + "' WHERE name = '" + req.body.name + "';", async (err, resss) => {
-            var d = req.body.desc
-            d = d.replace("'", "`")
-            var sql = ("UPDATE descriptions set descr='" + d + "' WHERE name='" + req.body.name +"';")
-            console.log(sql)
+            var d = req.body.desc;
+            d = d.replace("'", "`");
+            var sql = ("UPDATE descriptions set descr='" + d + "' WHERE name='" + req.body.name +"';");
+            console.log(sql);
             client.query(sql, async (err1, res1) =>{
                 if(err){
-                    console.log("erreur")
+                    console.log("erreur");
                 }
-            })
+            });
             
             if(!err){
                 client.query("SELECT * FROM planet NATURAL JOIN descriptions WHERE name='" + req.body.name + "';", async (errr, res) => {
                     if(!err){
-                        dico = res.rows
-                        ress.render("form_update.ejs", {dico})
+                        dico = res.rows;
+                        ress.render("form_update.ejs", {dico});
                     }else{
-                        console.log(errr.message)
+                        console.log(errr.message);
                     }
-                })
+                });
             }else{
-                console.log(err.message)
+                console.log(err.message);
             }
-        })
+        });
     }catch{
-        ress.redirect("#")
+        ress.redirect("#");
     }
-})
+});
 
 
 app.get('/form_update', (req, ress) => {
