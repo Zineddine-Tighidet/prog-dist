@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: aallal18032000/express:ms2-final
+          image: aallal18032000/express:ms2-f-ver2
           ports:
             - name: http
               containerPort: 4000
@@ -37,7 +37,7 @@ spec:
                   name: postgres-config
                   key: postgres-url
             - name: NODE_IP_ADDR
-              value: '192.168.58.2'
+              value: '192.168.49.2'
           
       
 ---

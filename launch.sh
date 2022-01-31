@@ -10,5 +10,5 @@ kubectl apply -f k8s/webapp1.yaml
 kubectl apply -f k8s/webapp2.yaml
 echo 'Waiting 120s so pods can wake up ...'
 sleep 120
-minikube service web-svc1 --url sa-frontend-lb
+minikube service web-svc1 --url=false
 minikube service web-svc2

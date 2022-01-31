@@ -42,7 +42,7 @@ app.post("/add", (req, ress) =>{
         client.query(`INSERT INTO planet (name, mass, gravity, length_of_day, distance_from_sun, path) VALUES ('${req.body.name}', '${req.body.masse}', '${req.body.gravite}', '${req.body.long}', '${req.body.dist}', 'logo');`, async (err, res) => {
             if(!err){
                 try{
-                    client.query(`INSERT INTO descriptions  (name, descr) VALUES ('${req.body.name}', '${req.body.desc}')`, async (errr, res_) => {
+                    client.query(`INSERT INTO descriptions (name, descr) VALUES ('${req.body.name}', '${req.body.desc}')`, async (errr, res_) => {
                         if(errr){
                             console.log(err.message);
                         }
@@ -160,7 +160,7 @@ app.get('/form_update', (req, ress) => {
 
 app.get('/add', (req, res) => {
     res.render('add.ejs', {ip : process.env.NODE_IP_ADDR})
-})
+});
 
 app.get('/update', (req, ress) => {
     try{
