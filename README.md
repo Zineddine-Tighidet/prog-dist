@@ -17,4 +17,4 @@ dependencies :
 - **Third** : A new page should open in your favorite browser, enjoy the planets !
 
 #### Notice :  
-- If you want to delete the Deployments and Services, user : `source delete.sh`s
+- If you want to delete the Deployments and Services, user : `source delete.sh`
